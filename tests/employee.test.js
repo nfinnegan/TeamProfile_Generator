@@ -28,14 +28,15 @@ describe("Employee", () => {
       expect(emp.email).toEqual(email);
     });
   });
-  //   describe("getID", () => {
-  //     it("should set id based off user input from question prompt", () => {
-  //       const emp = new Employee(id);
-  //       const id = 123;
-  //       expect(emp.id).toEqual(id);
-  //       //should I limit a max length for input?
-  //     });
-  //   });
+  describe("getID", () => {
+    it("should getID from object", () => {
+      const id = 123;
+      const emp = new Employee("Ashley", id, "someEmail@gmail.com");
+
+      expect(getID()).toEqual(emp.id);
+      //should I limit a max length for input?
+    });
+  });
   //   describe("getEmail", () => {
   //     it("should set email based off user input from question prompt", () => {
   //       const emp = new Employee(email);
