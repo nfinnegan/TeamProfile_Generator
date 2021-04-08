@@ -1,7 +1,7 @@
-const Employee = require("./Lib/employee");
-
-// let emp1 = new Employee("nat", 234, "some@gmail.com");
-// emp1.getID();
-// emp1.getEmail();
-// emp1.getName();
-// emp1.getRole();
+//const Employee = require("./Lib/employee");
+const Engineer = require("./Lib/engineer");
+const Intern = require("./Lib/intern");
+const Manager = require("./Lib/manager");
+const fs = require("fs");
+const inquirer = require("inquirer");
+const path = require("path");
