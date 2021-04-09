@@ -7,6 +7,9 @@ const inquirer = require("inquirer");
 const path = require("path");
 const generateHTML = require("./generateHTML");
 const jQuery = require("jquery");
+const { JSDOM } = require("jsdom");
+const { window } = new JSDOM("");
+const $ = require("jquery")(window);
 const allEmployees = [];
 
 function writeToFile(fileName, data) {

@@ -1,8 +1,12 @@
 //how do I get the role added?
 const jQuery = require("jquery");
+const { JSDOM } = require("jsdom");
+const { window } = new JSDOM("");
+const $ = require("jquery")(window);
 
 generateHTML = (allEmployees) => {
-  for (emp in allEmployees) {
+  console.log("generateHTML line 8:", allEmployees);
+  return allEmployees.forEach((emp) => {
     let card = $("<div></div>").addClass("card").appendTo(".container");
     let empRole = $("<div></div>").addClass("card-header").appendTo(card);
     let empInfo = $("<ul></ul>")
@@ -11,32 +15,39 @@ generateHTML = (allEmployees) => {
     $("<li></li>")
       .addClass("list-group-item")
       .appendTo(empInfo)
-      .text("Name:"`${data.name}`);
+      .text(`Name:${emp.name}`);
     $("<li></li>")
       .addClass("list-group-item")
       .appendTo(empInfo)
-      .text("Emp ID:"`${data.id}`);
+      .text(`Emp ID:${emp.id}`);
     $("<li></li>")
       .addClass("list-group-item")
       .appendTo(empInfo)
-      .text("Email:"`${data.email}`);
-    if (`${data.officeNumber}`) {
+      .text(`Email:${emp.email}`);
+    if (`${emp.officeNumber}`) {
       $("<li></li>")
         .addClass("list-group-item")
         .appendTo(empInfo)
-        .text("Office Num:"`${data.officeNumber}`);
-    } else if (`${data.github}`) {
+        .text(`Office Num:${emp.officeNumber}`);
+    } else if (`${emp.github}`) {
       $("<li></li>")
         .addClass("list-group-item")
         .appendTo(empInfo)
-        .text("Github:"`${data.github}`);
-    } else if (`${data.school}`) {
+        .text(`Github:${emp.github}`);
+    } else if (`${emp.school}`) {
       $("<li></li>")
         .addClass("list-group-item")
         .appendTo(empInfo)
-        .text("School:"`${data.school}`);
+        .text(`School:${emp.school}`);
     }
-  }
+  });
 };
+
+//   )
+
+//   {
+//       console.log(emp);
+
+//     }
 
 module.exports = generateHTML;
