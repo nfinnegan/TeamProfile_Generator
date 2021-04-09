@@ -41,9 +41,34 @@ const questions = [
       return answers.addTeam === "Engineer";
     },
   },
+  {
+    type: "input",
+    name: "engID",
+    message: "Please enter your engineers ID number",
+  },
+  {
+    type: "input",
+    name: "engEmail",
+    message: "Please enter your engineers email",
+  },
+  {
+    type: "input",
+    name: "gitHub",
+    message: "Please enter your engineers GitHub username",
+  },
+  {
+    type: "list",
+    name: "addTeam2",
+    message: "Would you like to add anyone else to your team?",
+    choices: ["Engineer", "Intern", "No one else to add"],
+    when: function (answers) {
+      return answers.gitHub === true;
+    },
+  },
 ];
 
 function init() {
+  console.log("Please build your team");
   inquirer
     .prompt(questions)
     .then((data) => {
