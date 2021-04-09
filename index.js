@@ -103,7 +103,7 @@ newTeammate = () => {
       },
     ])
     .then((answers) => {
-      if (answers.choices === "Engineer") {
+      if (answers.role === "Engineer") {
         const nEng = new Engineer(
           answers.empName,
           answers.empID,
@@ -111,7 +111,7 @@ newTeammate = () => {
           answers.gitHub
         );
         allEmployees.push(nEng);
-      } else if (answers.choices === "Intern") {
+      } else if (answers.role === "Intern") {
         const nIntern = new Intern(
           answers.empName,
           answers.empID,
