@@ -5,8 +5,14 @@ const Manager = require("./Lib/manager");
 const fs = require("fs");
 const inquirer = require("inquirer");
 const path = require("path");
-
+const generateHTML = require("generateHTML.js");
 const allEmployees = [];
+
+function writeToFile(fileName, data) {
+  fs.writeFileSync(path.join(__dirname, fileName), data, (err) =>
+    err ? console.log(err) : console.log("Success!")
+  );
+}
 
 newManager = () => {
   inquirer
@@ -55,9 +61,13 @@ newTeammatePrompt = () => {
       },
     ])
     .then((answers) => {
-      answers.addMember === "Yes"
-        ? newTeammate()
-        : console.log("team all built!", allEmployees);
+      if (answers.addMember === "Yes") {
+        newTeammate();
+      } else {
+        console.log("team all built!", allEmployees);
+        const fileName = "src/team.html";
+        writeToFile(fileName, allEmployees);
+      }
     });
 };
 
@@ -146,16 +156,12 @@ newTeammate = () => {
 function init() {
   console.log("Please build your team");
   newManager();
-  //   inquirer
-  //     .prompt(questions)
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((err) => console.error(err));
 }
 
 // Function call to initialize app
 init();
+
+module.exports = allEmployees;
 
 // .then((answers) => {
 //     switch (answers.choices) {
