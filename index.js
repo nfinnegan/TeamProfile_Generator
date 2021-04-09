@@ -6,10 +6,7 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const path = require("path");
 const generateHTML = require("./generateHTML");
-const jQuery = require("jquery");
-const { JSDOM } = require("jsdom");
-const { window } = new JSDOM("");
-const $ = require("jquery")(window);
+
 const allEmployees = [];
 
 function writeToFile(fileName, data) {
@@ -138,25 +135,6 @@ newTeammate = () => {
     });
 };
 
-// const addTeamMate = () =>
-//   new Promise((resolve, reject) => {
-//     inquirer
-//       .prompt([
-//         {
-//           type: "list",
-//           name: "addMember",
-//           message: "Would you like to add anyone to your team?",
-//           choices: ["Yes", "No"],
-//         },
-//       ])
-//       .then((answers) => {
-//         answers.addMember === "Yes"
-//           ? resolve(newTeammate())
-//           : reject(console.log("team all built!"));
-//       });
-//     resolve;
-//   });
-
 function init() {
   console.log("Please build your team");
   newManager();
@@ -166,21 +144,6 @@ function init() {
 init();
 
 module.exports = allEmployees;
-
-// .then((answers) => {
-//     switch (answers.choices) {
-//       case "Engineer":
-//         response = newEngineer();
-//         break;
-//       case "Intern":
-//         response = newIntern();
-//         break;
-//       case "No one else to add":
-//         response = "";
-//         break;
-//     }
-//     return answers[response];
-//   });
 
 // addTeamMate = (role) => {
 //   switch (answers.choices) {
@@ -195,72 +158,4 @@ module.exports = allEmployees;
 //       break;
 //   }
 //   return answers[role];
-// };
-
-// newEngineer = () => {
-//   inquirer
-//     .prompt([
-//       {
-//         type: "input",
-//         name: "engName",
-//         message: "Please enter your engineers name",
-//       },
-//       {
-//         type: "input",
-//         name: "engID",
-//         message: "Please enter your engineers ID number",
-//       },
-//       {
-//         type: "input",
-//         name: "engEmail",
-//         message: "Please enter your engineers email",
-//       },
-//       {
-//         type: "input",
-//         name: "gitHub",
-//         message: "Please enter your engineers GitHub username",
-//       },
-//     ])
-//     .then((answers) => {
-//       const nEng = new Engineer(
-//         answers.engName,
-//         answers.engID,
-//         answers.engEmail,
-//         answers.gitHub
-//       );
-//     });
-// };
-
-// newIntern = () => {
-//   inquirer
-//     .prompt([
-//       {
-//         type: "input",
-//         name: "intName",
-//         message: "Please enter your intern's name",
-//       },
-//       {
-//         type: "input",
-//         name: "intID",
-//         message: "Please enter your interns ID number",
-//       },
-//       {
-//         type: "input",
-//         name: "intEmail",
-//         message: "Please enter your interns email",
-//       },
-//       {
-//         type: "input",
-//         name: "intSchool",
-//         message: "Please enter your interns school",
-//       },
-//     ])
-//     .then((answers) => {
-//       const nIntern = new Intern(
-//         answers.intName,
-//         answers.intID,
-//         answers.intEmail,
-//         answers.intSchool
-//       );
-//     });
 // };
