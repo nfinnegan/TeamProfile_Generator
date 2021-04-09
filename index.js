@@ -117,13 +117,13 @@ newTeammatePrompt = () => {
     .prompt([
       {
         type: "list",
-        name: "role",
+        name: "addMember",
         message: "Would you like to add anyone to your team?",
-        choices: ["Engineer", "Intern", "No one else to add"],
+        choices: ["Yes", "No"],
       },
     ])
     .then((answers) => {
-      answers.choices === "Engineer" || "Intern"
+      answers.addMember === "Yes"
         ? newTeammate()
         : console.log("team all built!");
     });
@@ -132,6 +132,12 @@ newTeammatePrompt = () => {
 newTeammate = () => {
   inquirer
     .prompt([
+      {
+        type: "list",
+        name: "role",
+        message: "Who would you like to add?",
+        choices: ["Engineer", "Intern"],
+      },
       {
         type: "input",
         name: "empName",
@@ -165,7 +171,7 @@ newTeammate = () => {
       },
     ])
     .then((answers) => {
-      if (answers.role === "Engineer") {
+      if (answers.choices === "Engineer") {
         const nEng = new Engineer(
           answers.empName,
           answers.empID,
@@ -173,8 +179,7 @@ newTeammate = () => {
           answers.gitHub
         );
         allEmployees.push(nEng);
-        newTeammatePrompt();
-      } else if (answers.role === "Intern") {
+      } else if (answers.choices === "Intern") {
         const nIntern = new Intern(
           answers.empName,
           answers.empID,
@@ -182,10 +187,10 @@ newTeammate = () => {
           answers.intSchool
         );
         allEmployees.push(nIntern);
-        newTeammatePrompt();
-      } else if ("No one else to add") {
+      } else {
         return;
       }
+      newTeammatePrompt();
     });
 };
 
@@ -203,70 +208,6 @@ newTeammate = () => {
 //     }
 //     return answers[response];
 //   });
-
-// const questions = [
-//   {
-//     type: "input",
-//     name: "managerName",
-//     message: "Please enter managers name",
-//   },
-//   {
-//     type: "input",
-//     name: "mgrID",
-//     message: "Please enter your ID number",
-//   },
-//   {
-//     type: "input",
-//     name: "mgrEmail",
-//     message: "Please enter your email",
-//   },
-//   {
-//     type: "input",
-//     name: "offNum",
-//     message: "Please enter your office phone number",
-//   },
-//   {
-//     type: "list",
-//     name: "role",
-//     message: "Would you like to add anyone to your team?",
-//     choices: ["Engineer", "Intern", "No one else to add"],
-//     askAnswered: true,
-//   },
-//   {
-//     type: "input",
-//     name: "engName",
-//     message: "Please enter your engineers name",
-//     askAnswered: true,
-//     when: function (answers) {
-//       return answers.role === "Engineer";
-//     },
-//   },
-//   {
-//     type: "input",
-//     name: "engID",
-//     message: "Please enter your engineers ID number",
-//     askAnswered: true,
-//   },
-//   {
-//     type: "input",
-//     name: "engEmail",
-//     message: "Please enter your engineers email",
-//     askAnswered: true,
-//   },
-//   {
-//     type: "input",
-//     name: "gitHub",
-//     message: "Please enter your engineers GitHub username",
-//     askAnswered: true,
-//   },
-//   {
-//     type: "list",
-//     name: "role",
-//     message: "Would you like to add anyone to your team?",
-//     choices: ["Engineer", "Intern", "No one else to add"],
-//     askAnswered: true,
-//   },
-// ];
 
 // addTeamMate = (role) => {
 //   switch (answers.choices) {
