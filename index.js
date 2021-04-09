@@ -44,6 +44,149 @@ newManager = () => {
     });
 };
 
+newTeammatePrompt = () => {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "addMember",
+        message: "Would you like to add anyone to your team?",
+        choices: ["Yes", "No"],
+      },
+    ])
+    .then((answers) => {
+      answers.addMember === "Yes"
+        ? newTeammate()
+        : console.log("team all built!", allEmployees);
+    });
+};
+
+newTeammate = () => {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "role",
+        message: "Who would you like to add?",
+        choices: ["Engineer", "Intern"],
+      },
+      {
+        type: "input",
+        name: "empName",
+        message: "Please enter name",
+      },
+      {
+        type: "input",
+        name: "empID",
+        message: "Please enter ID number",
+      },
+      {
+        type: "input",
+        name: "empEmail",
+        message: "Please enter email",
+      },
+      {
+        type: "input",
+        name: "gitHub",
+        message: "Please enter your engineers GitHub username",
+        when: function (answers) {
+          return answers.role === "Engineer";
+        },
+      },
+      {
+        type: "input",
+        name: "intSchool",
+        message: "Please enter your interns school",
+        when: function (answers) {
+          return answers.role === "Intern";
+        },
+      },
+    ])
+    .then((answers) => {
+      if (answers.choices === "Engineer") {
+        const nEng = new Engineer(
+          answers.empName,
+          answers.empID,
+          answers.empEmail,
+          answers.gitHub
+        );
+        allEmployees.push(nEng);
+      } else if (answers.choices === "Intern") {
+        const nIntern = new Intern(
+          answers.empName,
+          answers.empID,
+          answers.empEmail,
+          answers.intSchool
+        );
+        allEmployees.push(nIntern);
+      }
+      newTeammatePrompt();
+    });
+};
+
+// const addTeamMate = () =>
+//   new Promise((resolve, reject) => {
+//     inquirer
+//       .prompt([
+//         {
+//           type: "list",
+//           name: "addMember",
+//           message: "Would you like to add anyone to your team?",
+//           choices: ["Yes", "No"],
+//         },
+//       ])
+//       .then((answers) => {
+//         answers.addMember === "Yes"
+//           ? resolve(newTeammate())
+//           : reject(console.log("team all built!"));
+//       });
+//     resolve;
+//   });
+
+function init() {
+  console.log("Please build your team");
+  newManager();
+  //   inquirer
+  //     .prompt(questions)
+  //     .then((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch((err) => console.error(err));
+}
+
+// Function call to initialize app
+init();
+
+// .then((answers) => {
+//     switch (answers.choices) {
+//       case "Engineer":
+//         response = newEngineer();
+//         break;
+//       case "Intern":
+//         response = newIntern();
+//         break;
+//       case "No one else to add":
+//         response = "";
+//         break;
+//     }
+//     return answers[response];
+//   });
+
+// addTeamMate = (role) => {
+//   switch (answers.choices) {
+//     case "Engineer":
+//       response = newEngineer();
+//       break;
+//     case "Intern":
+//       response = newIntern();
+//       break;
+//     case "No one else to add":
+//       response = "";
+//       break;
+//   }
+//   return answers[role];
+// };
+
 // newEngineer = () => {
 //   inquirer
 //     .prompt([
@@ -111,129 +254,3 @@ newManager = () => {
 //       );
 //     });
 // };
-
-newTeammatePrompt = () => {
-  inquirer
-    .prompt([
-      {
-        type: "list",
-        name: "addMember",
-        message: "Would you like to add anyone to your team?",
-        choices: ["Yes", "No"],
-      },
-    ])
-    .then((answers) => {
-      answers.addMember === "Yes"
-        ? newTeammate()
-        : console.log("team all built!");
-    });
-};
-
-newTeammate = () => {
-  inquirer
-    .prompt([
-      {
-        type: "list",
-        name: "role",
-        message: "Who would you like to add?",
-        choices: ["Engineer", "Intern"],
-      },
-      {
-        type: "input",
-        name: "empName",
-        message: "Please enter name",
-      },
-      {
-        type: "input",
-        name: "empID",
-        message: "Please enter ID number",
-      },
-      {
-        type: "input",
-        name: "empEmail",
-        message: "Please enter email",
-      },
-      {
-        type: "input",
-        name: "gitHub",
-        message: "Please enter your engineers GitHub username",
-        when: function (answers) {
-          return answers.role === "Engineer";
-        },
-      },
-      {
-        type: "input",
-        name: "intSchool",
-        message: "Please enter your interns school",
-        when: function (answers) {
-          return answers.role === "Intern";
-        },
-      },
-    ])
-    .then((answers) => {
-      if (answers.choices === "Engineer") {
-        const nEng = new Engineer(
-          answers.empName,
-          answers.empID,
-          answers.empEmail,
-          answers.gitHub
-        );
-        allEmployees.push(nEng);
-      } else if (answers.choices === "Intern") {
-        const nIntern = new Intern(
-          answers.empName,
-          answers.empID,
-          answers.empEmail,
-          answers.intSchool
-        );
-        allEmployees.push(nIntern);
-      } else {
-        return;
-      }
-      newTeammatePrompt();
-    });
-};
-
-// .then((answers) => {
-//     switch (answers.choices) {
-//       case "Engineer":
-//         response = newEngineer();
-//         break;
-//       case "Intern":
-//         response = newIntern();
-//         break;
-//       case "No one else to add":
-//         response = "";
-//         break;
-//     }
-//     return answers[response];
-//   });
-
-// addTeamMate = (role) => {
-//   switch (answers.choices) {
-//     case "Engineer":
-//       response = newEngineer();
-//       break;
-//     case "Intern":
-//       response = newIntern();
-//       break;
-//     case "No one else to add":
-//       response = "";
-//       break;
-//   }
-//   return answers[role];
-// };
-
-function init() {
-  console.log("Please build your team");
-  newManager();
-  //   inquirer
-  //     .prompt(questions)
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((err) => console.error(err));
-}
-
-// Function call to initialize app
-init();
