@@ -11,7 +11,12 @@ describe("school name", () => {
 describe("getRole", () => {
   it("should get employee type ", () => {
     const roleType = "Intern";
-    const intern = new Intern("Natalie", 123, "someEmail@gmail.com");
+    const intern = new Intern(
+      "Natalie",
+      123,
+      "someEmail@gmail.com",
+      "university of Illinois"
+    );
     expect(intern.getRole()).toBe(roleType);
   });
 });
