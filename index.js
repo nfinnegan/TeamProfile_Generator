@@ -5,7 +5,8 @@ const Manager = require("./Lib/manager");
 const fs = require("fs");
 const inquirer = require("inquirer");
 const path = require("path");
-const generateHTML = require("generateHTML.js");
+const generateHTML = require("./generateHTML");
+const jQuery = require("jquery");
 const allEmployees = [];
 
 function writeToFile(fileName, data) {
@@ -66,7 +67,7 @@ newTeammatePrompt = () => {
       } else {
         console.log("team all built!", allEmployees);
         const fileName = "src/team.html";
-        writeToFile(fileName, allEmployees);
+        writeToFile(fileName, generateHTML(allEmployees));
       }
     });
 };

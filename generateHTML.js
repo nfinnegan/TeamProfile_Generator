@@ -1,38 +1,40 @@
+//how do I get the role added?
+const jQuery = require("jquery");
+
 generateHTML = (allEmployees) => {
   for (emp in allEmployees) {
-    let empRole = $("<div></div>")
-      .addClass("card-header")
-      .appendTo(".container");
+    let card = $("<div></div>").addClass("card").appendTo(".container");
+    let empRole = $("<div></div>").addClass("card-header").appendTo(card);
     let empInfo = $("<ul></ul>")
       .addClass("list-group list-group-flush")
       .appendTo(empRole);
     $("<li></li>")
       .addClass("list-group-item")
       .appendTo(empInfo)
-      .text(`${data.name}`);
+      .text("Name:"`${data.name}`);
     $("<li></li>")
       .addClass("list-group-item")
       .appendTo(empInfo)
-      .text(`${data.id}`);
+      .text("Emp ID:"`${data.id}`);
     $("<li></li>")
       .addClass("list-group-item")
       .appendTo(empInfo)
-      .text(`${data.email}`);
+      .text("Email:"`${data.email}`);
     if (`${data.officeNumber}`) {
       $("<li></li>")
         .addClass("list-group-item")
         .appendTo(empInfo)
-        .text(`${data.officeNumber}`);
+        .text("Office Num:"`${data.officeNumber}`);
     } else if (`${data.github}`) {
       $("<li></li>")
         .addClass("list-group-item")
         .appendTo(empInfo)
-        .text(`${data.github}`);
+        .text("Github:"`${data.github}`);
     } else if (`${data.school}`) {
       $("<li></li>")
         .addClass("list-group-item")
         .appendTo(empInfo)
-        .text(`${data.school}`);
+        .text("School:"`${data.school}`);
     }
   }
 };
