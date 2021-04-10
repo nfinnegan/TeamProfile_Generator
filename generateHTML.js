@@ -6,8 +6,10 @@ const teamCards = [];
 const createCards = (allEmployees) => {
   for (let i = 0; i < allEmployees.length; i++) {
     if (allEmployees[i].getRole() === "Manager") {
-      teamCards.push(`<div class="card" style="width: 18rem">
-    <div class="card-header">Role: ${allEmployees[i].getRole()}</div>
+      teamCards.push(`<div class="card col-sm-12 col-md-3 col-lg-3" style="width: 18rem">
+    <div class="card-header">Role:<i class="fas fa-chalkboard-teacher"></i> ${allEmployees[
+      i
+    ].getRole()}</div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Name: ${allEmployees[i].name}</li>
       <li class="list-group-item">Email: <a target="_blank" href="mailto:${
@@ -20,8 +22,10 @@ const createCards = (allEmployees) => {
     </ul>
     </div>`);
     } else if (allEmployees[i].getRole() === "Engineer") {
-      teamCards.push(`<div class="card" style="width: 18rem">
-    <div class="card-header">Role: ${allEmployees[i].getRole()}</div>
+      teamCards.push(`<div class="card col-sm-12 col-md-3 col-lg-3" style="width: 18rem">
+    <div class="card-header">Role:<i class="fas fa-laptop-code"></i> ${allEmployees[
+      i
+    ].getRole()}</div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Name: ${allEmployees[i].name}</li>
       <li class="list-group-item">Email: <a target="_blank" href="mailto:${
@@ -34,15 +38,17 @@ const createCards = (allEmployees) => {
     </ul>
     </div>`);
     } else if (allEmployees[i].getRole() === "Intern") {
-      teamCards.push(`<div class="card" style="width: 18rem">
-      <div class="card-header">Role: ${allEmployees[i].getRole()}</div>
+      teamCards.push(`<div class="card col-sm-12 col-md-3 col-lg-3" style="width: 18rem">
+      <div class="card-header">Role:<i class="fas fa-graduation-cap"></i> ${allEmployees[
+        i
+      ].getRole()}</div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Name: ${allEmployees[i].name}</li>
         <li class="list-group-item">Email: <a target="_blank" href="mailto:${
           allEmployees[i].email
         }">${allEmployees[i].email}</a></li>
         <li class="list-group-item">Emp ID: ${allEmployees[i].id}</li>
-        <li class="list-group-item">GitHub: ${allEmployees[i].school}</li>
+        <li class="list-group-item">School: ${allEmployees[i].school}</li>
       </ul>
       </div>`);
     }
@@ -60,9 +66,13 @@ const createCards = (allEmployees) => {
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
         crossorigin="anonymous"
       />
-      <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      </head>
+      <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css">
     </head>
     <body>
       <header>
@@ -75,6 +85,7 @@ const createCards = (allEmployees) => {
         </div>
       </header>
       <div class="container">
+      <div class="row">
 ${teamCards.join(" ")}
 </div>
 
