@@ -62,7 +62,9 @@ To run tests, please run the following in your terminal:
 
 ## Preview
 
--
+- Video Demo: https://youtu.be/rUu5AgAt_Ko
+- Screen Shot of final product:
+  ![TeamHTMLScreenSHot](src/teamHTMLScreenShot.png)
 
 ## Resources 💡
 

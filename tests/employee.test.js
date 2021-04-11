@@ -16,7 +16,6 @@ describe("Employee", () => {
       const id = 123;
       const emp = new Employee("Natalie", id);
       expect(emp.id).toEqual(id);
-      //should I limit a max length for input?
     });
     it("should set email based off user input from question prompt", () => {
       const email = "yourEmail@gmail.com";
