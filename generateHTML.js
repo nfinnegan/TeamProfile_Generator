@@ -1,8 +1,10 @@
-//how do I get the role added?
-
 const Manager = require("./Lib/manager");
 
+//creates new empty array for the each "Created Card" in the for loop to be pushed through once information is set in each
 const teamCards = [];
+
+//takes allEmployees array of objects generated from user input and loops through
+//to pull data based on ROLE type in order to create cards to render on HTML
 const createCards = (allEmployees) => {
   for (let i = 0; i < allEmployees.length; i++) {
     if (allEmployees[i].getRole() === "Manager") {

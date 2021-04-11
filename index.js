@@ -7,14 +7,17 @@ const inquirer = require("inquirer");
 const path = require("path");
 const createCards = require("./generateHTML");
 
+//empty array to push objects into after user inputs data
 const allEmployees = [];
 
+//created function to write to HTML file which I invoke during an if/else statement in newTeammatePrompt()
 function writeToFile(fileName, data) {
   fs.writeFileSync(path.join(__dirname, fileName), data, (err) =>
     err ? console.log(err) : console.log("Success!")
   );
 }
 
+//first prompt that gets asked is for the manager so they can build their team
 newManager = () => {
   inquirer
     .prompt([
@@ -51,6 +54,7 @@ newManager = () => {
     });
 };
 
+//separate prompt to be invoked after the each team member is built to check if they want to continuing adding or be finished
 newTeammatePrompt = () => {
   inquirer
     .prompt([
@@ -66,12 +70,13 @@ newTeammatePrompt = () => {
         newTeammate();
       } else {
         console.log("team all built!", allEmployees);
-        const fileName = "src/team.html";
-        writeToFile(fileName, createCards(allEmployees));
+        const fileName = "src/teamDEMO.html";
+        writeToFile(fileName, createCards(allEmployees)); //creates HTML if "would you like to add a team member === no"
       }
     });
 };
 
+//Once newTeammatePrompt ==== yes, this prompt is invoked & goes through series of questions based of off Engineer or Intern
 newTeammate = () => {
   inquirer
     .prompt([
@@ -135,6 +140,7 @@ newTeammate = () => {
     });
 };
 
+//function to start application
 function init() {
   console.log("Please build your team");
   newManager();

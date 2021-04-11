@@ -50,6 +50,10 @@ To run tests, please run the following in your terminal:
 
         npm run test
 
+## Testing Status
+
+![TestScreenShot](src/testScreenShot.png)
+
 ## Technologies Used 💻
 
 - Node.js
@@ -58,6 +62,8 @@ To run tests, please run the following in your terminal:
 
 ## Preview
 
+-
+
 ## Resources 💡
 
 In addition to help and support from the TAs & my tutor, I found the below videos/articles to be helpful
@@ -65,6 +71,11 @@ In addition to help and support from the TAs & my tutor, I found the below video
 - https://stackoverflow.com/questions/56412516/conditional-prompt-rendering-in-inquirer
 - https://github.com/SBoudrias/Inquirer.js/tree/master/packages/inquirer/examples
 - https://www.youtube.com/watch?v=RBLIm5LMrmc
+
+## Future Development
+
+- Add validators to each input to ensure the appropriate information is being entered by the user
+- Further CSS styling
 
 ## License
 
